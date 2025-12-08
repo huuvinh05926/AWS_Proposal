@@ -5,53 +5,57 @@ weight: 2
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 10 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Configure Spring Data JPA and connect to database (PostgreSQL/MySQL)
+- Develop Employee management APIs
+- Develop Payroll statistics APIs
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Learning / Research                                               | Practice & Code                                                                                      | AWS Event Attended                     |
+| --- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 2   | - Learn Spring Data JPA <br> - Entity and Repository concepts     | - Configure application.properties <br> - Create Entity classes <br> - Create Repository interfaces  | Deploying Java Applications on AWS EC2 |
+| 3   | - Learn about DTO Pattern <br> - Separation of Entity and DTO     | - Implement API: GET /api/v1/employees <br> - Implement API: GET /api/v1/employees/total             |                                        |
+| 4   | - Learn about JPA Query Methods                                   | - Implement API: GET /api/v1/employees/active/count <br> - Implement API: GET /api/v1/employees/{id} |                                        |
+| 5   | - Learn payroll business logic <br> - Database schema for payroll | - Design payroll tables <br> - Prepare sample data                                                   |                                        |
+| 6   | - Learn Java Stream API <br> - groupingBy, summingDouble          | - Implement API: GET /api/v1/payroll/monthly <br> - Implement API: GET /api/v1/payroll/summary       |                                        |
+| 7   | - Learn about task/evaluation business logic                      | - Implement API: GET /api/v1/tasks <br> - Implement API: GET /api/v1/evaluations                     |                                        |
 
 ### Week 10 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Successfully configured Spring Data JPA, connected to PostgreSQL/MySQL database.
 
-* Successfully created and configured an AWS Free Tier account.
+- Created Entity classes (Employee, Payroll, Task, Evaluation) corresponding to database tables.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+- Created Repository interfaces extending JpaRepository, understood built-in methods (findAll, findById, save, delete).
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+- Implemented 4 Employee management APIs:
 
-* Used AWS CLI to perform basic operations such as:
+  - `GET /api/v1/employees` (retrieve all employees)
+  - `GET /api/v1/employees/total` (count total employees)
+  - `GET /api/v1/employees/active/count` (count active employees)
+  - `GET /api/v1/employees/{id}` (retrieve employee by ID)
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+- Implemented 2 Payroll statistics APIs:
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+  - `GET /api/v1/payroll/monthly` (retrieve monthly payroll list)
+  - `GET /api/v1/payroll/summary` (retrieve total statistics by department)
+
+- Implemented 2 additional APIs:
+
+  - `GET /api/v1/tasks` (retrieve task list)
+  - `GET /api/v1/evaluations` (retrieve evaluation list)
+
+- Used Java Stream API to process data, group, and calculate statistics efficiently.
+
+- Attended AWS online event: "Deploying Java Applications on AWS EC2".
+
+  - View EC2 service
+  - Create and manage key pairs
+  - Check information about running services
+  - ...
+
+- Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
+- ...

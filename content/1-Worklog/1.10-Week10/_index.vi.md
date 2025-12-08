@@ -5,55 +5,67 @@ weight: 2
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 10:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Triển khai Spring Data JPA & Repository để tương tác với Database.
+- Xây dựng các API GET cho quản lý nhân viên (Employee).
+- Phát triển API Thống kê/Lương (Payroll) và các API liên quan.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Nội dung Học/Research                                                                                   | Công việc Thực hành & Code                                                                              | AWS Event đã xem                       |
+| --- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 2   | Spring Data JPA & Repository: Tìm hiểu các lớp Repository để tương tác với Database (PostgreSQL/MySQL). | Cấu hình Spring Data JPA, tạo Entity classes và Repository interfaces.                                  | Deploying Java Applications on AWS EC2 |
+| 3   | DTO Pattern & Exception Handling: Tìm hiểu pattern để xử lý dữ liệu và lỗi.                             | Triển khai API Employee: Xây dựng API GET /api/v1/employees và GET /api/v1/employees/total.             |                                        |
+| 4   | RESTful API Best Practices: Thiết kế API chuẩn REST.                                                    | Hoàn thành các API: GET /api/v1/employees/active/count và GET /api/v1/employees/{id}.                   |                                        |
+| 5   | Data Aggregation & Analysis: Phân tích yêu cầu Business Logic cho Payroll và các thống kê.              | Thiết kế database schema và business logic cho Payroll.                                                 |                                        |
+| 6   | Java Stream API: Áp dụng để xử lý và tổng hợp dữ liệu phức tạp.                                         | Phát triển API Thống kê/Lương: Xây dựng API GET /api/v1/payroll/monthly và GET /api/v1/payroll/summary. |                                        |
+| 7   | Task & Evaluation Management: Phân tích yêu cầu cho Tasks và Evaluations.                               | API Đánh giá & Task: Xây dựng cơ bản các API GET /api/v1/tasks và GET /api/v1/evaluations.              |                                        |
 
 ### Kết quả đạt được tuần 10:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Hiểu rõ về **Spring Data JPA & Repository**:
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+  - Cấu hình Spring Data JPA với Database (PostgreSQL/MySQL)
+  - Tạo Entity classes ánh xạ với database tables
+  - Triển khai Repository interfaces cho các thao tác CRUD
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+- Thành công trong việc triển khai **API Employee**:
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+  - GET /api/v1/employees - Lấy danh sách nhân viên
+  - GET /api/v1/employees/total - Tổng số nhân viên
+  - GET /api/v1/employees/active/count - Số nhân viên đang hoạt động
+  - GET /api/v1/employees/{id} - Lấy thông tin nhân viên theo ID
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+- Áp dụng **DTO Pattern & Exception Handling**:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+  - Sử dụng DTO để transfer data giữa layers
+  - Xử lý exceptions một cách nhất quán
+  - Implement custom exception classes
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+- Nắm được **Data Aggregation & Analysis**:
 
+  - Phân tích yêu cầu Business Logic cho Payroll
+  - Thiết kế database schema phù hợp
+  - Xác định các thống kê cần thiết
 
+- Phát triển thành công **API Thống kê/Lương**:
+
+  - GET /api/v1/payroll/monthly - Báo cáo lương hàng tháng
+  - GET /api/v1/payroll/summary - Tổng hợp thống kê lương
+
+- Áp dụng **Java Stream API**:
+
+  - Xử lý và filter dữ liệu phức tạp
+  - Tổng hợp và group data
+  - Optimize performance với parallel streams
+
+- Xây dựng **API Đánh giá & Task**:
+
+  - GET /api/v1/tasks - Lấy danh sách công việc
+  - GET /api/v1/evaluations - Lấy danh sách đánh giá
+  - Thiết lập relationships giữa các entities
+
+- Tham gia AWS Event:
+  - Deploying Java Applications on AWS EC2 - Áp dụng lý thuyết EC2 cho việc triển khai ứng dụng Java

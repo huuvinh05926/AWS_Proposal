@@ -5,55 +5,65 @@ weight: 1
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 9:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Tìm hiểu API Gateway: Các loại API (REST/HTTP), cách hoạt động của Stage và Resource.
+- Học về Cognito User Pool: Quản lý người dùng và xác thực JWT.
+- Hiểu cơ chế Authorizer trong API Gateway.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Nội dung Học/Research                                                          | Công việc Thực hành & Code                                                                                                                 | AWS Event đã xem                             |
+| --- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| 2   | API Gateway Overview: Tìm hiểu các loại API (REST/HTTP), khái niệm cơ bản.     | Khởi tạo API Gateway (HTTP API) cơ bản, làm quen với giao diện.                                                                            | Modern API Development with API Gateway      |
+| 3   | API Gateway Advanced: Stage, Resource, Method, và cách hoạt động.              | Tạo API Gateway: Định nghĩa routes base cho HR System: /api/v1/employees.                                                                  |                                              |
+| 4   | API Gateway Routes: Thiết kế RESTful API cho hệ thống.                         | Định nghĩa thêm routes: /api/v1/attendance, /api/v1/payroll.                                                                               |                                              |
+| 5   | Cognito User Pool: Cơ chế quản lý người dùng, App Client.                      | Setup Cognito: Tạo Cognito User Pool và App Client.                                                                                        | Secure Your Applications with Amazon Cognito |
+| 6   | Cognito Authentication: Các luồng xác thực và JSON Web Token (JWT).            | Cấu hình các luồng xác thực trong Cognito User Pool.                                                                                       |                                              |
+| 7   | Cognito Authorizer: Cơ chế hoạt động của Cognito Authorizer trong API Gateway. | Kiểm thử JWT: Cấu hình Cognito Authorizer cho một route thử nghiệm. Dùng Hosted UI để lấy JWT và kiểm tra quyền truy cập API bằng Postman. |                                              |
 
 ### Kết quả đạt được tuần 9:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Hiểu rõ về **Amazon API Gateway**:
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+  - Phân biệt các loại API (REST API vs HTTP API)
+  - Nắm được khái niệm Stage, Resource, Method
+  - Hiểu cách hoạt động của routing và integration
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+- Thành công trong việc tạo API Gateway:
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+  - Khởi tạo HTTP API cho HR System
+  - Định nghĩa các routes base:
+    - /api/v1/employees
+    - /api/v1/attendance
+    - /api/v1/payroll
+  - Cấu hình Stage và deployment
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+- Nắm được **Amazon Cognito User Pool**:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+  - Cơ chế quản lý người dùng
+  - App Client và cách tạo JWT
+  - Các luồng xác thực (Authorization Code, Implicit, etc.)
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+- Setup Cognito thành công:
 
+  - Tạo Cognito User Pool
+  - Cấu hình App Client
+  - Thiết lập các luồng xác thực phù hợp
 
+- Hiểu về **Cognito Authorizer**:
+
+  - Cơ chế hoạt động của Authorizer trong API Gateway
+  - Cách validate JWT token
+  - Flow xác thực từ client đến backend
+
+- Kiểm thử JWT thành công:
+
+  - Cấu hình Cognito Authorizer cho route thử nghiệm
+  - Sử dụng Hosted UI để lấy JWT token
+  - Kiểm tra quyền truy cập API bằng Postman với JWT
+
+- Tham gia các AWS Events:
+  - Modern API Development with API Gateway
+  - Secure Your Applications with Amazon Cognito

@@ -5,55 +5,62 @@ weight: 1
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 8:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Tìm hiểu CloudFront (CDN): Chức năng CDN, Cache Policy, Origin Access Control (OAC).
+- Hiểu Route 53 & DNS: Domain, Hosted Zone, các loại Record.
+- Học về WAF (Web Application Firewall) và bảo mật ứng dụng web.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Nội dung Học/Research                                                   | Công việc Thực hành & Code                                                                                                  | AWS Event đã xem                              |
+| --- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| 2   | CloudFront (CDN): Tìm hiểu chức năng CDN, cơ chế phân phối nội dung.    | Khởi tạo CloudFront Distribution cơ bản, tìm hiểu cấu trúc.                                                                 | Optimizing Performance with Amazon CloudFront |
+| 3   | CloudFront Advanced: Cache Policy, Origin Access Control (OAC).         | Thiết lập CDN: Kết nối CloudFront với S3 bucket (Frontend) làm Origin.                                                      |                                               |
+| 4   | CloudFront Configuration: TTL, CORS, Behavior settings.                 | Cấu hình TTL và CORS cho CloudFront Distribution, kiểm tra cache hoạt động.                                                 |                                               |
+| 5   | Route 53 & DNS: Domain, Hosted Zone, các loại Record (A, AAAA, CNAME).  | Liên kết Domain: Cấu hình Route 53 Hosted Zone.                                                                             | AWS Networking Fundamentals                   |
+| 6   | Route 53 Practice: Tạo và quản lý DNS records.                          | Tạo record A để trỏ domain chính thức tới CloudFront Distribution.                                                          |                                               |
+| 7   | WAF (Web Application Firewall): Chức năng, các mối đe dọa OWASP Top 10. | Tăng cường Bảo mật: Tạo WebACL trong AWS WAF, gắn WAF vào CloudFront. Viết thử Rule cơ bản để chặn các mối đe dọa phổ biến. |                                               |
 
 ### Kết quả đạt được tuần 8:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Hiểu rõ về **Amazon CloudFront (CDN)**:
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+  - Cơ chế phân phối nội dung qua Edge Locations
+  - Cache Policy và cách tối ưu hiệu năng
+  - Origin Access Control (OAC) để bảo mật
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+- Thành công trong việc thiết lập CDN:
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+  - Tạo CloudFront Distribution
+  - Kết nối S3 bucket làm Origin cho Frontend
+  - Cấu hình TTL và CORS phù hợp
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+- Nắm được **Route 53 & DNS**:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+  - Hiểu khái niệm Domain và Hosted Zone
+  - Phân biệt các loại Record (A, AAAA, CNAME)
+  - Cách quản lý DNS trên AWS
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+- Liên kết domain thành công:
 
+  - Cấu hình Route 53 Hosted Zone
+  - Tạo record A trỏ domain tới CloudFront Distribution
+  - Kiểm tra truy cập qua domain chính thức
 
+- Hiểu về **AWS WAF** và bảo mật web:
+
+  - Chức năng của Web Application Firewall
+  - Các mối đe dọa OWASP Top 10
+  - Cách viết Rule để bảo vệ ứng dụng
+
+- Tăng cường bảo mật thành công:
+
+  - Tạo WebACL trong AWS WAF
+  - Gắn WAF vào CloudFront Distribution
+  - Viết và test Rule cơ bản để chặn các mối đe dọa phổ biến
+
+- Tham gia các AWS Events:
+  - Optimizing Performance with Amazon CloudFront
+  - AWS Networking Fundamentals

@@ -5,55 +5,56 @@ weight: 1
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 7:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Tìm hiểu AWS & IAM: Tổng quan AWS, IAM (User, Group, Policy). Phân quyền theo Best Practices.
+- Hiểu kiến trúc dự án HR System và cấu trúc Microservices/Serverless.
+- Học cách sử dụng S3 & Static Website Hosting.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Nội dung Học/Research                                                                            | Công việc Thực hành & Code                                                                 | AWS Event đã xem                                |
+| --- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| 2   | Giới thiệu AWS & IAM: Tổng quan AWS, IAM (User, Group, Policy). Phân quyền theo Best Practices.  | Setup AWS Access: Tạo tài khoản IAM cá nhân và phân quyền theo nguyên tắc Least Privilege. | Getting Started with AWS IAM and Cloud Security |
+| 3   | AWS CLI & Console: Học cách sử dụng AWS CLI và Console để quản lý tài nguyên.                    | Cài đặt và cấu hình AWS CLI trên máy tính, thực hành các lệnh cơ bản.                      |                                                 |
+| 4   | Kiến trúc Dự án: Đọc và phân tích kiến trúc Microservices/Serverless của HR System (theo sơ đồ). | Thiết kế cấu trúc thư mục project theo Layered Architecture.                               | AWSome Day – Introduction to AWS Services       |
+| 5   | Spring Boot Setup: Tìm hiểu Spring Boot framework và Maven.                                      | Backend: Khởi tạo project Spring Boot cơ bản, cấu hình Maven dependencies.                 |                                                 |
+| 6   | Amazon S3 & Static Hosting: Học cách tạo S3 bucket, bật Static Website Hosting.                  | S3 Setup: Tạo S3 bucket, cấu hình chính sách truy cập.                                     |                                                 |
+| 7   | S3 Practice: Thực hành hosting trang web tĩnh.                                                   | Upload và hosting một trang HTML Frontend cơ bản lên S3, kiểm tra truy cập.                |                                                 |
 
 ### Kết quả đạt được tuần 7:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Hiểu rõ về **AWS IAM** và cách quản lý quyền truy cập:
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+  - Tạo IAM User, Group, và Policy
+  - Áp dụng nguyên tắc Least Privilege trong phân quyền
+  - Phân biệt giữa IAM User và Root Account
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+- Thành công trong việc setup môi trường làm việc:
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+  - Tạo tài khoản IAM cá nhân với quyền phù hợp
+  - Cấu hình AWS CLI trên máy tính
+  - Kết nối và sử dụng AWS Console
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+- Nắm được kiến trúc tổng quan của dự án HR System:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+  - Hiểu mô hình Microservices/Serverless
+  - Phân tích các thành phần trong sơ đồ kiến trúc
+  - Xác định được vai trò của từng service
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+- Khởi tạo thành công Backend project:
 
+  - Setup Spring Boot project cơ bản
+  - Cấu hình Maven dependencies
+  - Tạo cấu trúc thư mục theo Layered Architecture (Controller, Service, Repository)
 
+- Làm quen với Amazon S3:
+
+  - Tạo S3 bucket và cấu hình chính sách truy cập
+  - Bật Static Website Hosting
+  - Upload và hosting trang HTML Frontend cơ bản
+
+- Tham gia các AWS Events:
+  - Getting Started with AWS IAM and Cloud Security
+  - AWSome Day – Introduction to AWS Services

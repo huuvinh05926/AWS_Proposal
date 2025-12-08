@@ -5,53 +5,55 @@ weight: 2
 chapter: false
 pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 12 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Use ElastiCache (Redis) to improve API performance
+- Integrate AWS Secrets Manager for credentials security
+- Develop APIs related to evaluations and support system
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Learning / Research                                                | Practice & Code                                                                                                                                                                                                                                               | AWS Event Attended                                        |
+| --- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| 2   | - Learn about ElastiCache (Redis) <br> - Cache-Aside Pattern       | - Create Redis Cluster <br> - Configure Security Group                                                                                                                                                                                                        | Improving Application Performance with Amazon ElastiCache |
+| 3   | - Learn Spring Data Redis <br> - RedisTemplate and CacheManager    | - Integrate Redis into Spring Boot <br> - Implement caching for /payroll/summary API                                                                                                                                                                          |                                                           |
+| 4   | - Learn AWS Secrets Manager <br> - Environment variable management | - Store DB credentials in Secrets Manager <br> - Update application.properties to retrieve secrets                                                                                                                                                            |                                                           |
+| 5   | - Learn about Amazon Rekognition <br> - Face Recognition APIs      | - Analyze Rekognition Face Recognition <br> - Prepare employee photos                                                                                                                                                                                         | AI/ML on AWS – Image & Face Recognition Basics            |
+| 6   | - Learn business logic for evaluations and support tickets         | - Implement API: GET /api/v1/evaluations/{id} <br> - Implement API: POST /api/v1/evaluations                                                                                                                                                                  |                                                           |
+| 7   | - Complete support system APIs <br> - Swagger documentation        | - Implement API: GET /api/v1/support-tickets <br> - Implement API: PUT /api/v1/support-tickets/{id}/forward <br> - Implement API: PUT /api/v1/support-tickets/{id}/notify <br> - Generate Swagger/OpenAPI documentation <br> - Review Spring Security and JWT |                                                           |
 
 ### Week 12 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Created ElastiCache Redis Cluster, configured Security Group to allow connections from Spring Boot application.
 
-* Successfully created and configured an AWS Free Tier account.
+- Integrated Spring Data Redis, implemented Cache-Aside Pattern to cache data from `/payroll/summary` API, significantly improving response time.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+- Stored database credentials and API keys in AWS Secrets Manager, updated `application.properties` to automatically retrieve credentials via AWS SDK.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+- Analyzed Amazon Rekognition APIs for Face Recognition, prepared employee face photos for future features (e.g., face recognition attendance).
 
-* Used AWS CLI to perform basic operations such as:
+- Implemented 2 Evaluation management APIs:
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+  - `GET /api/v1/evaluations/{id}` (retrieve evaluation by ID)
+  - `POST /api/v1/evaluations` (create new evaluation)
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Implemented 3 Support System APIs:
+
+  - `GET /api/v1/support-tickets` (retrieve support ticket list)
+  - `PUT /api/v1/support-tickets/{id}/forward` (forward ticket to relevant department)
+  - `PUT /api/v1/support-tickets/{id}/notify` (send notification to employee)
+
+- Generated complete API documentation using Swagger/OpenAPI, including all endpoints (Employee, Payroll, Attendance, Leave, Evaluation, Support).
+
+- Reviewed the entire Spring Security and JWT authentication system, ensuring all APIs are properly secured.
+
+- Attended AWS online events: "Improving Application Performance with Amazon ElastiCache" and "AI/ML on AWS – Image & Face Recognition Basics".
+
+  - View EC2 service
+  - Create and manage key pairs
+  - Check information about running services
+  - ...
+
+- Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
+- ...

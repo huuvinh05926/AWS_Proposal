@@ -5,53 +5,48 @@ weight: 1
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 9 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Understand API Gateway types (REST API vs HTTP API)
+- Set up Cognito User Pool for user management
+- Integrate JWT authentication from Cognito into API Gateway
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Learning / Research                                                                          | Practice & Code                                                                 | AWS Event Attended                             |
+| --- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------- |
+| 2   | - Learn about API Gateway <br> - REST API vs HTTP API <br> - Routes and Integration concepts | - Create HTTP API <br> - Configure basic settings                               | Modern API Development with Amazon API Gateway |
+| 3   | - Learn routing structure <br> - HTTP Methods: GET, POST, PUT, DELETE                        | - Create routes for /api/v1/employees                                           |                                                |
+| 4   | - Learn about complex routing                                                                | - Create routes for /api/v1/attendance <br> - Create routes for /api/v1/payroll |                                                |
+| 5   | - Learn about Cognito User Pool <br> - User Pool vs Identity Pool <br> - App Client concepts | - Create Cognito User Pool <br> - Configure App Client                          |                                                |
+| 6   | - Learn about JWT Token (id_token, access_token) <br> - JWT authentication flows             | - Test login and retrieve JWT from Cognito                                      |                                                |
+| 7   | - Learn about Authorizers <br> - Cognito Authorizer configuration                            | - Configure Cognito Authorizer in API Gateway <br> - Test with Postman          | Secure Your Applications with Amazon Cognito   |
 
 ### Week 9 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Created HTTP API on API Gateway, clearly understood the differences between REST API and HTTP API (cost, latency, features).
 
-* Successfully created and configured an AWS Free Tier account.
+- Successfully configured routes for the HR System:
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+  - `/api/v1/employees` (GET, POST, PUT, DELETE)
+  - `/api/v1/attendance` (GET, POST, PUT)
+  - `/api/v1/payroll` (GET)
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+- Created Cognito User Pool, configured App Client with appropriate settings (e.g., Allow username/password, Enable refresh token).
 
-* Used AWS CLI to perform basic operations such as:
+- Successfully tested login flow, retrieved JWT Token (id_token, access_token) from Cognito.
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+- Configured Cognito Authorizer in API Gateway, integrated JWT authentication.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Used Postman to test APIs with JWT Token in the Authorization header, verified that requests without a token are rejected with HTTP 401.
+
+- Attended AWS online events: "Modern API Development with Amazon API Gateway" and "Secure Your Applications with Amazon Cognito".
+
+  - View EC2 service
+  - Create and manage key pairs
+  - Check information about running services
+  - ...
+
+- Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
+- ...

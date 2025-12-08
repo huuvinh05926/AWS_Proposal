@@ -6,10 +6,6 @@ chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Báo cáo này chỉ nhằm mục đích tham khảo học tập. Vui lòng **không sao chép nguyên văn** hoặc sử dụng vào mục đích nộp chính thức.
-{{% /notice %}}
-
 ### Mục tiêu tuần 4:
 
 - Tìm hiểu chuyên sâu về **Amazon Simple Storage Service (S3)** và các dịch vụ lưu trữ liên quan.

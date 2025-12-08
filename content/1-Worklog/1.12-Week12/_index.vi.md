@@ -5,54 +5,76 @@ weight: 2
 chapter: false
 pre: " <b> 1.12 </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
 ### Mục tiêu tuần 12:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Tối ưu hóa hiệu năng với ElastiCache (Redis) và bảo mật với Secrets Manager.
+- Tích hợp Face Recognition và xây dựng Module Hỗ trợ.
+- Hoàn thiện tài liệu API và kiểm tra bảo mật.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Nội dung Học/Research                                                                   | Công việc Thực hành & Code                                                                                                              | AWS Event đã xem                                          |
+| --- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| 2   | ElastiCache (Redis): Cache Architecture và Caching Strategy.                            | Tối ưu hóa: Setup Redis Cache cho ứng dụng.                                                                                             | Improving Application Performance with Amazon ElastiCache |
+| 3   | Caching Implementation: Best practices cho caching data.                                | Tối ưu API thống kê lương (/payroll/summary) bằng Redis caching.                                                                        |                                                           |
+| 4   | AWS Secrets Manager: Bảo mật thông tin kết nối Database và API keys.                    | Lưu trữ mật khẩu DB/API vào Secrets Manager, cập nhật application configuration.                                                        |                                                           |
+| 5   | Feature Tích hợp: Phân tích yêu cầu Tích hợp Face Recognition và Module Hỗ trợ.         | API Tích hợp & Hỗ trợ: Xây dựng GET /api/v1/evaluations/{id} và POST /api/v1/evaluations.                                               | AI/ML on AWS – Image & Face Recognition Basics            |
+| 6   | Support Ticket System: Thiết kế workflow xử lý ticket và notification.                  | Triển khai GET /api/v1/support-tickets, PUT /api/v1/support-tickets/{id}/forward, PUT /api/v1/support-tickets/{id}/notify.              |                                                           |
+| 7   | API Documentation & Security Review: Swagger/OpenAPI và Spring Security best practices. | Hoàn thiện: Cập nhật API Documentation (Swagger/OpenAPI) cho tất cả endpoints. Kiểm tra lại Spring Security/JWT cho các API quan trọng. |                                                           |
 
 ### Kết quả đạt được tuần 12:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Hiểu rõ về **ElastiCache (Redis)**:
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+  - Cache Architecture và design patterns
+  - Caching Strategy (Cache-Aside, Write-Through, Write-Behind)
+  - Redis data structures và use cases
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+- Thành công trong việc **Tối ưu hóa hiệu năng**:
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+  - Setup Redis Cache cluster
+  - Implement caching cho API /payroll/summary
+  - Giảm đáng kể response time và database load
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+- Nắm được **AWS Secrets Manager**:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+  - Bảo mật thông tin nhạy cảm (DB credentials, API keys)
+  - Rotation policy cho secrets
+  - Integration với Spring Boot application
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+- Triển khai **Secrets Management**:
 
+  - Lưu trữ mật khẩu DB/API vào Secrets Manager
+  - Cập nhật application configuration
+  - Remove hardcoded credentials
 
+- Xây dựng thành công **API Tích hợp & Hỗ trợ**:
+
+  - GET /api/v1/evaluations/{id} - Lấy chi tiết đánh giá
+  - POST /api/v1/evaluations - Tạo đánh giá mới
+  - GET /api/v1/support-tickets - Danh sách ticket hỗ trợ
+  - PUT /api/v1/support-tickets/{id}/forward - Chuyển tiếp ticket
+  - PUT /api/v1/support-tickets/{id}/notify - Gửi thông báo
+
+- Tích hợp **Face Recognition**:
+
+  - Phân tích yêu cầu tích hợp AI/ML
+  - Thiết kế workflow cho face recognition
+  - Chuẩn bị integration với AWS Rekognition
+
+- Hoàn thiện **API Documentation**:
+
+  - Cập nhật Swagger/OpenAPI specification
+  - Document tất cả endpoints với examples
+  - Generate interactive API documentation
+
+- Kiểm tra **Spring Security/JWT**:
+
+  - Review authentication và authorization flow
+  - Audit các API endpoints quan trọng
+  - Fix security vulnerabilities
+
+- Tham gia các AWS Events:
+  - Improving Application Performance with Amazon ElastiCache
+  - AI/ML on AWS – Image & Face Recognition Basics

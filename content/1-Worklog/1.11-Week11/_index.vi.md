@@ -5,55 +5,67 @@ weight: 2
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 11:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Triển khai Business Logic cho chấm công và quy trình duyệt phép.
+- Phát triển API Attendance (chấm công) và tích hợp Lambda.
+- Xây dựng API Leave Management (quản lý nghỉ phép).
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Nội dung Học/Research                                                                                    | Công việc Thực hành & Code                                                                                                | AWS Event đã xem                             |
+| --- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| 2   | Business Logic Implementation: Phân tích quy tắc chấm công (check-in/check-out) và quy trình duyệt phép. | Thiết kế database schema cho Attendance và Leave Management.                                                              | Building Serverless Applications with Lambda |
+| 3   | Attendance Rules: Xác định business rules cho chấm công (giờ làm việc, late, early leave).               | Phát triển API Attendance: Xây dựng API GET /api/v1/attendance và GET /api/v1/attendance/range.                           |                                              |
+| 4   | Update Attendance: Logic cập nhật và chỉnh sửa bản ghi chấm công.                                        | Hoàn thành API PUT /api/v1/attendance/{recordId} để cập nhật thông tin chấm công.                                         |                                              |
+| 5   | API Tích hợp Serverless (Lambda): Tìm hiểu cách Lambda xử lý các sự kiện POST/STOP cho chấm công.        | API Chấm công (Lambda Flow): Xây dựng POST /api/attendance/start và POST /api/attendance/stop (Giả định Lambda/DynamoDB). |                                              |
+| 6   | Leave Management System: Thiết kế quy trình nghỉ phép (request, approve, reject).                        | Triển khai API Nghỉ phép: Xây dựng GET /api/v1/leaves, GET /api/v1/leaves/history/{employeeId}, và POST /api/v1/leaves.   |                                              |
+| 7   | Leave Approval Workflow: Logic duyệt/từ chối đơn nghỉ phép cho Admin.                                    | Hoàn thành API PUT /api/v1/leaves/{id}/approve và PUT /api/v1/leaves/{id}/reject.                                         |                                              |
 
 ### Kết quả đạt được tuần 11:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Hiểu rõ về **Business Logic Implementation**:
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+  - Phân tích quy tắc chấm công (check-in/check-out)
+  - Xác định quy trình duyệt phép (request → approve/reject)
+  - Thiết kế database schema phù hợp
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+- Thành công trong việc phát triển **API Attendance**:
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+  - GET /api/v1/attendance - Lấy danh sách bản ghi chấm công
+  - GET /api/v1/attendance/range - Lấy chấm công theo khoảng thời gian
+  - PUT /api/v1/attendance/{recordId} - Cập nhật bản ghi chấm công
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+- Nắm được **Serverless Architecture với Lambda**:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+  - Hiểu cách Lambda xử lý sự kiện real-time
+  - Tích hợp Lambda với DynamoDB cho tốc độ cao
+  - Thiết kế event-driven architecture
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+- Triển khai thành công **API Chấm công (Lambda Flow)**:
 
+  - POST /api/attendance/start - Bắt đầu ca làm việc
+  - POST /api/attendance/stop - Kết thúc ca làm việc
+  - Sử dụng Lambda/DynamoDB cho hiệu năng tối ưu
 
+- Xây dựng hoàn chỉnh **Leave Management System**:
+
+  - GET /api/v1/leaves - Lấy danh sách đơn nghỉ phép
+  - GET /api/v1/leaves/history/{employeeId} - Lịch sử nghỉ phép của nhân viên
+  - POST /api/v1/leaves - Tạo đơn xin nghỉ phép mới
+
+- Triển khai **Leave Approval Workflow**:
+
+  - PUT /api/v1/leaves/{id}/approve - Duyệt đơn nghỉ phép
+  - PUT /api/v1/leaves/{id}/reject - Từ chối đơn nghỉ phép
+  - Implement notification system cho approval flow
+
+- Áp dụng **Best Practices**:
+
+  - Validation và error handling cho business logic
+  - Transaction management cho các operations phức tạp
+  - Audit logging cho attendance và leave records
+
+- Tham gia AWS Event:
+  - Building Serverless Applications with Lambda - Áp dụng lý thuyết Serverless cho chấm công real-time

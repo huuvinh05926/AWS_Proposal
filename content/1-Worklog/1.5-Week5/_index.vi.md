@@ -6,10 +6,6 @@ chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Báo cáo này được tổng hợp cho mục đích học tập và tham khảo. Không được sao chép nguyên văn hoặc sử dụng vào mục đích nộp chính thức.
-{{% /notice %}}
-
 ### Mục tiêu tuần 5:
 
 - Hiểu rõ mô hình **Shared Responsibility Model** và trách nhiệm bảo mật giữa AWS và khách hàng.

@@ -5,53 +5,59 @@ weight: 2
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 11 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Understand attendance business logic (check-in/check-out rules)
+- Integrate Lambda to automate attendance operations
+- Develop Leave Management APIs
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Learning / Research                                                                                 | Practice & Code                                                                                                                                                                                                                                        | AWS Event Attended                               |
+| --- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| 2   | - Learn check-in/check-out business rules <br> - Time calculation concepts                          | - Design database schema <br> - Prepare sample data                                                                                                                                                                                                    | Building Serverless Applications with AWS Lambda |
+| 3   | - Learn about pagination <br> - Query with date range                                               | - Implement API: GET /api/v1/attendance <br> - Implement API: GET /api/v1/attendance/range                                                                                                                                                             |                                                  |
+| 4   | - Learn about data update rules                                                                     | - Implement API: PUT /api/v1/attendance/{recordId}                                                                                                                                                                                                     |                                                  |
+| 5   | - Learn about Lambda and API Gateway integration <br> - Trigger concepts (API Gateway, EventBridge) | - Create Lambda Function (Python/Node.js) <br> - Integrate with API Gateway                                                                                                                                                                            |                                                  |
+| 6   | - Learn Lambda execution flow <br> - DynamoDB for event logging                                     | - Implement POST /api/attendance/start <br> - Implement POST /api/attendance/stop                                                                                                                                                                      |                                                  |
+| 7   | - Learn leave management business logic <br> - Approval workflow (Pending, Approved, Rejected)      | - Implement API: GET /api/v1/leaves <br> - Implement API: GET /api/v1/leaves/history/{employeeId} <br> - Implement API: POST /api/v1/leaves <br> - Implement API: PUT /api/v1/leaves/{id}/approve <br> - Implement API: PUT /api/v1/leaves/{id}/reject |                                                  |
 
 ### Week 11 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+- Understood business rules for check-in/check-out: Automatic calculation of work hours, overtime, late arrival, early departure.
 
-* Successfully created and configured an AWS Free Tier account.
+- Implemented 3 Attendance management APIs:
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+  - `GET /api/v1/attendance` (retrieve attendance list with pagination)
+  - `GET /api/v1/attendance/range` (query by date range)
+  - `PUT /api/v1/attendance/{recordId}` (update attendance record)
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+- Created Lambda Function (Python or Node.js), successfully integrated with API Gateway.
 
-* Used AWS CLI to perform basic operations such as:
+- Implemented 2 Lambda endpoints:
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+  - `POST /api/attendance/start` (start attendance via Lambda)
+  - `POST /api/attendance/stop` (stop attendance via Lambda)
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Used DynamoDB to log Lambda execution events.
+
+- Implemented 5 Leave Management APIs:
+
+  - `GET /api/v1/leaves` (retrieve all leave requests)
+  - `GET /api/v1/leaves/history/{employeeId}` (retrieve leave history by employee)
+  - `POST /api/v1/leaves` (create new leave request)
+  - `PUT /api/v1/leaves/{id}/approve` (approve leave request)
+  - `PUT /api/v1/leaves/{id}/reject` (reject leave request)
+
+- Implemented approval workflow with status: Pending → Approved/Rejected.
+
+- Attended AWS online event: "Building Serverless Applications with AWS Lambda".
+
+  - View EC2 service
+  - Create and manage key pairs
+  - Check information about running services
+  - ...
+
+- Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
+- ...
