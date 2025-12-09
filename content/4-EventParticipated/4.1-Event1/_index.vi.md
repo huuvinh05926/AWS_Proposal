@@ -1,125 +1,174 @@
 ---
 title: "Event 1"
-date: "2025-11-11"
+date: "2025-10-03"
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# 03/10/2025
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+# AWS GenAI Builder
 
-### Mục Đích Của Sự Kiện
+**Diễn giả:** Toàn Huỳnh - Senior Specialist Solutions Architect
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+## AI-Driven Development Lifecycle (AI-DLC)
 
-### Danh Sách Diễn Giả
+### Giới thiệu về AI-DLC
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+- AI-DLC không chỉ là một công cụ đơn thuần
+- Sự phát triển của AI trong phát triển phần mềm:
+  - **2023:** Hỗ trợ developer viết code nhanh hơn
+  - **2024:** Tạo ra các đoạn code lớn hơn và trả lời nhanh hơn
+  - **2025:** Hoàn thành các task phát triển end-to-end với human in the loop
+- AI phải được sử dụng theo mô hình pair-programming thay vì làm việc đơn lẻ
+- Developer vẫn là người kiểm tra, validate và là owner của code
 
-### Nội Dung Nổi Bật
+### AI Disruption to Development
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+**Những thách thức khi sử dụng AI:**
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+- Cần hiểu rõ lý do tại sao cần AI
+- AI đang trở thành công cụ không thể thiếu trong phát triển phần mềm
+- Vấn đề chất lượng phần mềm vẫn do developer kiểm tra và đảm bảo
+- Khi dùng AI để scale dự án lớn có thể gặp nhiều vấn đề:
+  - Sinh ra nhiều code nhưng không kiểm soát được chất lượng
+  - Có thể phải làm lại từ đầu nếu không kiểm soát tốt
+  - Khó theo dõi những gì AI đang làm
+- Không nên "single-shot" cho tất cả các trường hợp
+- Khi xem AI là bạn đồng hành cùng giải quyết vấn đề, đa số vấn đề sẽ được giải quyết tốt hơn
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+### Cách làm việc với AI-DLC
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+**Nguyên tắc quan trọng:**
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+- Developer phải là người đưa ra quyết định cuối cùng, không để AI tự quyết định
+- Developer cần tổng hợp thông tin, lên ý tưởng và trao đổi với AI
+- AI sẽ giúp define tasks, tránh mất kiểm soát
+- Phải cung cấp đủ thông tin và ý tưởng cho AI
+- Phát triển dựa trên phân tích và hiểu vấn đề với sự hỗ trợ của AI
 
-#### Domain-Driven Design (DDD)
+**Quy trình làm việc:**
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+![How does AI-DLC work?](/images/4-EventParticipated/BC23F17A-C590-4D04-9560-B9CBF09A0B87.jpeg)
 
-#### Event-Driven Architecture
+![AI-Driven Development Lifecycle](/images/4-EventParticipated/0B608674-73F3-4495-A0F4-4DD70F17C3B8.jpeg)
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+**Các bước thực hiện:**
 
-#### Compute Evolution
+1. Đưa vấn đề vào AI để generate user stories
+2. Scope down và đặt câu hỏi về app muốn làm
+3. Nhờ AI group những unit quan trọng cho end user
+4. Implement từng unit, chia nhỏ thành các project nhỏ
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+### Mob Elaboration & Construction
 
-#### Amazon Q Developer
+**Mob Elaboration:** Nhiều người làm chung trên một máy tính và chia sẻ output với nhau
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+![Construction: Mob Construction](/images/4-EventParticipated/C96E172C-D36A-451B-A402-8EB2DF5B8486.jpeg)
 
-### Những Gì Học Được
+**Lưu ý:** Đi từ một yêu cầu đơn giản qua từng unit và đi tới kết quả cuối cùng. Nếu Backend và Frontend muốn làm việc chung theo mô hình này thì cần có ít nhất một track chung để tương tác với nhau.
 
-#### Tư Duy Thiết Kế
+### Workflow with AI
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+**Standard Development Workflow:**
 
-#### Kiến Trúc Kỹ Thuật
+![AI-DLC Standard Development Workflow](/images/4-EventParticipated/67A368F8-5389-4E7E-AFE1-329DEE2B1255.jpeg)
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+- Hiện tại chúng ta dùng AI để compile code
+- Mô hình này không thể chia nhỏ ra, nên với dự án lớn nên dùng Amazon Q
 
-#### Chiến Lược Hiện Đại Hóa
+**Prompt Template:**
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+![Prompt Template](/images/4-EventParticipated/96F29C72-912C-4427-9774-F1381D6A8FA4.jpeg)
 
-### Ứng Dụng Vào Công Việc
+**Cách viết prompt hiệu quả:**
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+- Phải chỉ rõ AI làm gì, Product Manager làm gì
+- Phải chỉ ra được role để giải quyết vấn đề
+- Khi muốn làm dự án, yêu cầu AI plan ra trước
+- Có thể chia ra nhiều options và làm từ từ để tránh quá tải
 
-### Trải nghiệm trong event
+**Best Practices:**
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+- Lưu trữ kết quả trên file Markdown và dựa vào đó để làm những việc tiếp theo
+- Phải compile lại nhiều lần, upload lên MD và define rõ ràng
+- Đưa file MD vào project để AI có thể đọc và thêm ý tưởng
+- Có các dấu check trong file plan để note lại những thứ đã làm
 
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+![Each Stage](/images/4-EventParticipated/C651E529-5F58-47C4-8FF8-1A068DAAB023.jpeg)
 
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
+![Key Workflow Features](/images/4-EventParticipated/A432E852-C014-4130-B437-9BEE50B1296C.jpeg)
 
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+![Steps in AI-DLC](/images/4-EventParticipated/4A1C23B0-123E-47AB-A5AE-A71CBE94A764.jpeg)
 
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
+### Nguyên tắc quan trọng
 
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+**Never Single-shot a Multi-step Problem:**
 
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+![Never Single-shot](/images/4-EventParticipated/2B3CD950-C4EF-4601-B9C7-3B69F28F104E.jpeg)
+
+- Tận dụng AI cho những công việc chuẩn chỉnh
+- Những công việc cần suy nghĩ thì tự làm
+- Phải review thường xuyên, không giao nhiệm vụ hoàn toàn cho AI
+
+**Maximize Semantics per Token:**
+
+![Maximize Semantics per Token](/images/4-EventParticipated/6CAE446D-4245-4D9D-9807-D12D4FDD74F9.jpeg)
+
+- Code dễ over context, nên phải build thành Markdown file để tránh tỉ lệ đi sai
+
+![Code Ownership](/images/4-EventParticipated/BA4CF1EE-98AA-466F-B3F7-C8E87EF7E32C.jpeg)
+
+**Kết luận:** Bạn vẫn là người chịu trách nhiệm về code cuối cùng.
+
+---
+
+## Kiro - The AI IDE for Prototype to Production
+
+**Diễn giả:** My Nguyễn - Senior Prototyping Architect
+
+### Giới thiệu về Kiro
+
+Kiro là một AI IDE được thiết kế đặc biệt để chuyển đổi từ prototype sang production một cách nhanh chóng và hiệu quả.
+
+**Sự khác biệt giữa Kiro và VSCode:**
+
+![Kiro vs VSCode](/images/4-EventParticipated/48757C46-B986-4A99-9CC1-B4048BB2E690.jpeg)
+
+### Các tính năng chính
+
+**Power, Flexibility, and Security:**
+
+Kiro cung cấp sự kết hợp mạnh mẽ giữa:
+
+- **Power:** Khả năng xử lý mạnh mẽ với sự hỗ trợ của AI
+- **Flexibility:** Linh hoạt trong việc phát triển từ prototype đến production
+- **Security:** Đảm bảo an toàn và bảo mật trong quá trình phát triển
+
+---
+
+## Kết quả và Giá trị đạt được
+
+### Kiến thức thu được:
+
+- Hiểu rõ về **AI-Driven Development Lifecycle (AI-DLC)** và cách áp dụng AI như một bạn đồng hành trong phát triển phần mềm
+- Nắm vững kỹ thuật **Prompt Engineering** để tương tác hiệu quả với AI models
+- Học được phương pháp **Mob Construction** để làm việc nhóm với AI
+- Biết cách sử dụng Markdown files để quản lý project planning và AI context
+- Làm quen với **Kiro IDE** - công cụ chuyển đổi từ prototype sang production
+
+### Kỹ năng phát triển:
+
+- Kỹ năng viết prompt hiệu quả và cấu trúc hóa yêu cầu cho AI
+- Khả năng chia nhỏ dự án lớn thành các units có thể quản lý được
+- Hiểu được nguyên tắc "Never Single-shot a Multi-step Problem"
+- Biết cách review và validate code được AI tạo ra
+- Nâng cao kỹ năng làm việc nhóm trong môi trường AI-assisted development
+
+### Bài học quan trọng:
+
+- Developer vẫn phải là người đưa ra quyết định cuối cùng và chịu trách nhiệm về code
+- AI là công cụ hỗ trợ mạnh mẽ nhưng không thay thế được tư duy và kinh nghiệm của developer
+- Cần có quy trình rõ ràng khi làm việc với AI để tránh mất kiểm soát chất lượng
+- Collaboration và communication là yếu tố quan trọng trong AI-DLC

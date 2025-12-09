@@ -1,126 +1,256 @@
 ---
 title: "Event 2"
-date: "2025-11-11"
-weight: 1
+date: "2025-11-15"
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# 15/11/2025
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Generative AI with Amazon Bedrock
 
-### Event Objectives
+## Speaker Information
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- **Lam Tuan Kiet** - Sr. DevOps Engineer, FPT Software
+- **Danh Hoang Hieu Nghi** - AI Engineer, Renova Cloud
+- **Dinh Le Hoang Anh** - Cloud Engineer Trainee, First Cloud Journey
 
-### Speakers
+## Context and Transformation Motivation
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+Currently, many enterprises are facing outdated technology platforms. Investing in building a new platform from scratch often requires very high costs in terms of both finances and time. The optimal solution is to leverage cloud technology and serverless services to minimize operational costs and accelerate deployment speed.
 
-### Key Highlights
+## Foundation Models - The Foundation of Gen AI
 
-#### Identifying the drawbacks of legacy application architecture
+![Why foundation models?](/images/4-EventParticipated/3C0E9B79-FBAE-426F-934F-F054076921AE.jpeg)
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+### What is Generative AI?
 
-#### Transitioning to modern application architecture – Microservices
+Generative AI (Gen AI) is a technology that allows the creation of new content such as text, images, and audio based on input prompts. The special feature of Gen AI is its ability to create content that is creative and contextually appropriate.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+### Foundation Models
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+Foundation Models are AI models trained on massive amounts of data and have the ability to:
 
-#### Domain-Driven Design (DDD)
+- Handle diverse different tasks
+- Generalize knowledge from training data
+- Can be fine-tuned for specific applications
+- Save time and development costs
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+## Amazon Bedrock
 
-#### Event-Driven Architecture
+Amazon Bedrock is a fully managed service that provides access to many leading Foundation Models through a single API.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+![Supported foundation models in Amazon Bedrock](/images/4-EventParticipated/0D0458A0-B9F7-46CC-9405-C289F209CA7F.jpeg)
 
-#### Compute Evolution
+### Supported Foundation Models
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+Amazon Bedrock supports many models from leading providers:
 
-#### Amazon Q Developer
+- **Claude** (Anthropic): Strong in reasoning and analysis
+- **Titan** (Amazon): Models optimized for AWS use cases
+- **Jurassic** (AI21 Labs): Good for language processing
+- **Llama** (Meta): Open-source, flexible customization
+- **Stable Diffusion**: Specialized in image generation
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+## Prompt Engineering
 
-### Key Takeaways
+![What is a prompt?](/images/4-EventParticipated/0184C2FC-A3FE-4383-A620-1B308810C1F0.jpeg)
 
-#### Design Mindset
+### What is a Prompt?
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+A prompt is a command or text that we provide to the AI model to receive the desired result. The quality of the prompt directly affects the quality of the output.
 
-#### Technical Architecture
+![What is Prompt Engineering? - An Example](/images/4-EventParticipated/4B30DA12-5B1E-4330-B990-A6053E5424CA.jpeg)
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+### Prompt Engineering
 
-#### Modernization Strategy
+Prompt Engineering is the art and science of designing effective prompts to optimize results from AI models. This is an important skill when working with Generative AI.
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+## Prompting Techniques
 
-### Applying to Work
+### 1. Zero-Shot Prompting
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+![Prompting Techniques - Zero-Shot Prompting](/images/4-EventParticipated/4A2925C5-03A2-49A8-BD4B-6537AD872D9E.jpeg)
 
-### Event Experience
+**Zero-Shot Prompting** is a technique of asking questions or making requests directly without providing specific examples. The model will use its trained knowledge to answer.
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+**Advantages:**
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+- Simple, fast
+- Suitable for basic questions
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+**Disadvantages:**
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+- Results may not be accurate for complex tasks
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+### 2. Few-Shot Prompting
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+![Prompting Techniques - Few-shot prompting](/images/4-EventParticipated/571A852C-ADD7-4037-9F07-AA48ED36816B.jpeg)
 
-#### Some event photos
-*Add your event photos here*  
+**Few-Shot Prompting** provides a few illustrative examples before making the main request. This helps the model better understand the desired format and context.
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+**Advantages:**
+
+- Significantly improves accuracy
+- Model understands requirements better
+- Suitable for specific tasks
+
+**Disadvantages:**
+
+- Requires time to prepare examples
+- Consumes tokens (higher cost)
+
+### 3. Chain of Thought (CoT)
+
+![Prompting Techniques - Chain of Thought (CoT)](/images/4-EventParticipated/D26171ED-FE57-457A-9288-A3267EEAD3F3.jpeg)
+
+![Prompting Techniques - Chain of Thought (CoT)](/images/4-EventParticipated/16685DB4-D8E4-4074-8996-AA524CE40307.jpeg)
+
+**Chain of Thought (CoT)** is a technique that requires the model to explain each step of thinking before giving the final answer.
+
+**Advantages:**
+
+- Increases accuracy for complex problems
+- Helps debug and understand the model's logic
+- Suitable for problems requiring reasoning
+
+**How to use:**
+
+- Add the phrase "Let's think step by step" to the prompt
+- Request the model to explain each step
+- Check the logic before using the result
+
+## Retrieval Augmented Generation (RAG)
+
+![RAG in Action](/images/4-EventParticipated/54EF9821-5DB9-41DA-A5B3-0E585B9EFAA2.jpeg)
+
+### What is RAG?
+
+**Retrieval Augmented Generation (RAG)** is an architecture that combines:
+
+1. **Retrieval**: Retrieve information from internal data sources
+2. **Generation**: Use AI model to generate answers
+
+### RAG Workflow
+
+1. **User Query**: User poses a question
+2. **Document Retrieval**: System searches for relevant information in knowledge base
+3. **Context Building**: Combines retrieved information with original prompt
+4. **Generation**: AI model generates answer based on complete context
+5. **Response**: Returns result to user
+
+### Benefits of RAG
+
+- **Accuracy**: Increases accuracy with internal data
+- **Up-to-date**: Always uses the latest information
+- **Cost-effective**: No need to fine-tune model
+- **Security**: Control over data sources
+
+### Common Use Cases
+
+- Customer support chatbot
+- Internal enterprise Q&A system
+- Document search and summarization
+- Knowledge management systems
+
+## Other AWS AI Services
+
+### Amazon Rekognition
+
+![Amazon Rekognition](/images/4-EventParticipated/9C0D5865-CD50-4C39-8C20-774DD59461EC.jpeg)
+
+**Amazon Rekognition** is an image and video analysis service using machine learning.
+
+**Key Features:**
+
+- **Face Detection & Recognition**: Identify faces
+- **Object & Scene Detection**: Detect objects and scenes
+- **Celebrity Recognition**: Recognize celebrities
+- **Text in Image**: Extract text from images
+- **Content Moderation**: Filter inappropriate content
+
+**Use Cases:**
+
+- Face authentication system
+- Image classification and search
+- Video surveillance and security
+- Media content analysis
+
+### Amazon Comprehend
+
+![Amazon Comprehend](/images/4-EventParticipated/AE51DEB2-ACBA-4230-AA3D-DB5BFD7DE9C0.jpeg)
+
+**Amazon Comprehend** is a Natural Language Processing (NLP) service for text analysis.
+
+**Key Features:**
+
+- **Sentiment Analysis**: Analyze emotions (positive, negative, neutral)
+- **Entity Recognition**: Identify names, locations, organizations
+- **Key Phrase Extraction**: Extract important phrases
+- **Language Detection**: Detect language
+- **Topic Modeling**: Classify topics
+
+**Use Cases:**
+
+- Analyze customer feedback
+- Social media monitoring
+- Content categorization
+- Document classification
+
+## Key Takeaways
+
+### About Technology
+
+1. **Amazon Bedrock** is the optimal solution for deploying Gen AI with many model choices
+2. **Prompt Engineering** is an important skill to maximize AI capabilities
+3. **RAG** helps combine the power of AI with internal enterprise data
+4. AWS provides a diverse AI services ecosystem for many different use cases
+
+### About Implementation
+
+1. **Start simple**: Use zero-shot prompting for basic tasks
+2. **Optimize gradually**: Apply few-shot or CoT when high accuracy is needed
+3. **RAG for private data**: No need to fine-tune model, save costs
+4. **Combine services**: Leverage multiple AWS AI services for comprehensive solutions
+
+### About Business Value
+
+1. **Reduce costs**: Use managed services instead of building infrastructure
+2. **Increase speed**: Deploy quickly with pre-trained models
+3. **Scalability**: AWS automatically scales according to demand
+4. **Security**: AWS ensures security and compliance
+
+## Event Experience
+
+Attending the **"Generative AI with Amazon Bedrock"** workshop was an extremely beneficial experience, helping me understand more deeply about Gen AI technology and how to apply it in practice.
+
+### Learning from Experts
+
+- Speakers with practical experience shared specific case studies about deploying Gen AI in enterprises
+- Learned in detail about Prompt Engineering techniques and how to optimize prompts
+- Better understanding of RAG architecture and how to implement it in real systems
+
+### Technical Knowledge Gained
+
+- Mastered prompting techniques: Zero-shot, Few-shot, Chain of Thought
+- Clearly understood RAG workflow and how to integrate with internal knowledge base
+- Learned how to choose the appropriate Foundation Model for each use case
+- Explored other AWS AI services: Rekognition, Comprehend
+
+### Practical Applications
+
+The workshop gave me many ideas to apply in my work:
+
+- **Building chatbot**: Use RAG to create a chatbot with knowledge about company products/services
+- **Document processing**: Automatically extract and classify information from documents
+- **Content generation**: Support creating marketing content, technical documentation
+- **Customer insights**: Analyze customer feedback and sentiment
+
+### Networking
+
+- Met and exchanged ideas with professionals in the AI/ML field
+- Shared experiences and best practices with the community
+- Created connections for future collaboration opportunities
+
+> In conclusion, the event not only provided technical knowledge but also opened up a vision about AI trends and how enterprises can leverage this technology to create competitive advantage.

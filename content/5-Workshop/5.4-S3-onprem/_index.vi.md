@@ -1,20 +1,24 @@
 ---
-title : "Truy cập S3 từ môi trường truyền thống"
+title: "Triển khai Tầng Dữ liệu"
 date: "2025-11-11"
-weight : 4 
-chapter : false
-pre : " <b> 5.4. </b> "
+weight: 4
+chapter: false
+pre: " <b> 5.4. </b> "
 ---
 
 #### Tổng quan
 
-+ Trong phần này, bạn sẽ tạo một Interface Endpoint để truy cập Amazon S3 từ môi trường truyền thống mô phỏng. Interface Endpoint sẽ cho phép bạn định tuyến đến Amazon S3 qua kết nối VPN từ môi trường truyền thống mô phỏng của bạn.
+Dữ liệu là tài sản quan trọng nhất của mọi hệ thống. Vậy nên chúng ta sẽ thiết lập tầng dữ liệu (Data Layer) cho MiniMarket với tiêu chí: **Bảo mật tối đa** và **Hiệu năng cao**.
 
-+ Tại sao nên sử dụng **Interface Endpoint**:
-    + Các Gateway endpoints chỉ hoạt động với các tài nguyên đang chạy trong VPC nơi chúng được tạo. Interface Endpoint  hoạt động với tài nguyên chạy trong VPC và cả tài nguyên chạy trong môi trường truyền thống. Khả năng kết nối từ môi trường truyền thống của bạn với aws cloud có thể được cung cấp bởi AWS Site-to-Site VPN hoặc AWS Direct Connect.
-    + Interface Endpoint cho phép bạn kết nối với các dịch vụ do AWS PrivateLink cung cấp. Các dịch vụ này bao gồm một số dịch vụ AWS, dịch vụ do các đối tác và khách hàng AWS lưu trữ trong VPC của riêng họ (gọi tắt là Dịch vụ PrivateLink endpoints) và các dịch vụ Đối tác AWS Marketplace. Đối với workshop này, chúng ta sẽ tập trung vào việc kết nối với Amazon S3.
-    
-![Interface endpoint architecture](/images/5-Workshop/5.4-S3-onprem/diagram3.png)
+Chúng ta sẽ triển khai hai dịch vụ cốt lõi:
 
+- **Amazon RDS (Relational Database Service)**: Sử dụng SQL Server để lưu trữ dữ liệu nghiệp vụ (Sản phẩm, Đơn hàng, Người dùng). Database sẽ được đặt trong Private Subnet để ngăn chặn truy cập trực tiếp từ Internet.
+- **Amazon ElastiCache (Redis)**: Sử dụng Redis làm bộ nhớ đệm (In-memory Cache) để lưu trữ Session đăng nhập và giảm tải truy vấn cho Database chính.
 
+![Data Layer Architecture](/images/5-Workshop/5.4-S3-onprem/data-diagram.png)
 
+#### Nội dung
+
+- [Thiết lập Security Groups cho DB & Cache](5.4.1-prepare/)
+- [Khởi tạo Amazon RDS (SQL Server)](5.4.2-create-interface-enpoint/)
+- [Khởi tạo Amazon ElastiCache (Redis)](5.4.3-test-endpoint/)

@@ -1,40 +1,31 @@
 ---
-title : "Create a gateway endpoint"
+title: "Initialize VPC & Subnets"
 date: "2025-11-11"
-weight : 1
-chapter : false
-pre : " <b> 5.3.1 </b> "
+weight: 1
+chapter: false
+pre: " <b> 5.3.1 </b> "
 ---
 
-1. Open the [Amazon VPC console](https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#Home:)
-2. In the navigation pane, choose **Endpoints**, then click **Create Endpoint**:
+#### Initialize VPC & Subnets
 
-{{% notice note %}}
-You will see **6 existing VPC endpoints** that support **AWS Systems Manager (SSM)**. These endpoints were deployed automatically by the **CloudFormation Templates** for this workshop.
-{{% /notice %}}
+1. Open the **Amazon VPC console** (Note: Select the appropriate region for your needs, here we use Region **ap-southeast-1**)
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/endpoints.png)
+2. Choose **Create VPC**
 
-3. In the Create endpoint console:
-+ Specify name of the endpoint: ```s3-gwe```
-+ In service category, choose **AWS services**
+![VPC Tutorial 1](/images/5-Workshop/5.3-S3-vpc/vpc-tutorial-1.png)
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/create-s3-gwe1.png)
+3. Configuration:
+   - **Name**: MiniMarket-VPC
+   - **IPv4 CIDR**: 10.0.0.0/16
 
-+ In **Services**, type ```s3``` in the search box and choose the service with type **gateway**
+![VPC Tutorial 2](/images/5-Workshop/5.3-S3-vpc/vpc-tutorial-2.png)
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/services.png)
+4. Create **Subnets** (Divide into 2 AZs to ensure High Availability):
+   - **Public Subnets (2)**: 10.0.1.0/24 & 10.0.2.0/24 (Used for Load Balancer & NAT)
+   - **Private Subnets (2)**: 10.0.3.0/24 & 10.0.4.0/24 (Used for App, DB, Redis)
 
-+ For VPC, select **VPC Cloud** from the drop-down.
-+ For **Configure route tables**, select the route table that is already associated with **two subnets** (note: this is not the main route table for the VPC, but a second route table created by CloudFormation).
+![VPC Tutorial 3](/images/5-Workshop/5.3-S3-vpc/vpc-tutorial-3.png)
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/vpc.png)
+5. Click **Create VPC** and wait for the state to change to **Available** to complete successfully
 
-+ **For Policy**, leave the default option, **Full Access**, to allow full access to the service. You will deploy **a VPC endpoint policy** in a later lab module to demonstrate restricting access to **S3 buckets** based on policies.
-
-![endpoint](/images/5-Workshop/5.3-S3-vpc/policy.png)
-
-+ Do not add a tag to the VPC endpoint at this time.
-+ Click **Create endpoint**, then click x after receiving a successful creation message.
-
-![endpoint](/images/5-Workshop/5.3-S3-vpc/complete.png)
+![VPC Created](/images/5-Workshop/5.3-S3-vpc/vpc-tutorial-4.png)

@@ -1,43 +1,46 @@
 ---
-title : "Create an S3 Interface endpoint"
+title: "Initialize Amazon RDS"
 date: "2025-11-11"
-weight : 2
-chapter : false
-pre : " <b> 5.4.2 </b> "
+weight: 2
+chapter: false
+pre: " <b> 5.4.2 </b> "
 ---
 
-In this section you will create and test an S3 interface endpoint using the simulated on-premises environment deployed as part of this workshop.
+#### Initialize Amazon RDS
 
-1. Return to the Amazon VPC menu. In the navigation pane, choose Endpoints, then click Create Endpoint.
+1. Access **RDS Console** > **Subnet groups** > **Create DB subnet group**
 
-2. In Create endpoint console:
-+ Name the interface endpoint
-+ In Service category, choose **aws services** 
+2. Configure Subnet Group:
+   - **Name**: db-private-group
+   - **Subnets**: Select 2 AZs and choose the correct 2 Private Subnets
 
-![name](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint1.png)
+![DB1](/images/5-Workshop/5.4-S3-onprem/db1.png)
 
-3.  In the Search box, type S3 and press Enter. Select the endpoint named com.amazonaws.us-east-1.s3. Ensure that the Type column indicates Interface.
+![DB3](/images/5-Workshop/5.4-S3-onprem/db3.png)
 
-![service](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint2.png)
+3. Go to **Databases** > **Create database**
 
-4. For VPC, select VPC Cloud from the drop-down.
-{{% notice warning %}}
-Make sure to choose "VPC Cloud" and not "VPC On-prem"
-{{% /notice %}}
-+ Expand **Additional settings** and ensure that Enable DNS name is *not* selected (we will use this in the next part of the workshop)
+![DB4](/images/5-Workshop/5.4-S3-onprem/db4.png)
 
-![vpc](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint3.png)
+4. Configure Database:
 
-5. Select 2 subnets in the following AZs: us-east-1a and us-east-1b
+**Engine options**: Microsoft SQL Server (Express Edition)
 
-![subnets](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint4.png)
+![DB5](/images/5-Workshop/5.4-S3-onprem/db5.png)
 
-6. For Security group, choose SGforS3Endpoint:
+**Templates**: Free tier
 
-![sg](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint5.png)
+**Settings**: Set **Master Password** (remember it for later use)
 
-7. Keep the default policy - full access and click Create endpoint
+![DB6](/images/5-Workshop/5.4-S3-onprem/db6.png)
 
-![success](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint-success.png)
+**Connectivity**:
 
-Congratulation on successfully creating S3 interface endpoint. In the next step, we will test the interface endpoint.
+- **VPC**: The VPC you created for Web
+- **Subnet group**: db-private-group
+- **Public access**: No
+- **VPC security group**: Select the Security group you created for the database
+
+![DB7](/images/5-Workshop/5.4-S3-onprem/db7.png)
+
+5. Click **Create database**

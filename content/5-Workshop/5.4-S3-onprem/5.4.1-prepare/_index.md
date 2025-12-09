@@ -1,57 +1,43 @@
 ---
-title : "Prepare the environment"
+title: "Setup Security Groups"
 date: "2025-11-11"
-weight : 1
-chapter : false
-pre : " <b> 5.4.1 </b> "
+weight: 1
+chapter: false
+pre: " <b> 5.4.1 </b> "
 ---
 
-To prepare for this part of the workshop you will need to:
-+ Deploying a CloudFormation stack 
-+ Modifying a VPC route table. 
+#### Setup Security Groups
 
-These components work together to simulate on-premises DNS forwarding and name resolution.
+1. Access **EC2** > **Security Groups** > **Create security group**
 
-#### Deploy the CloudFormation stack
+![Security1](/images/5-Workshop/5.4-S3-onprem/security1.png)
 
-The CloudFormation template will create additional services to support an on-premises simulation:
-+ One Route 53 Private Hosted Zone that hosts Alias records for the PrivateLink S3 endpoint
-+ One Route 53 Inbound Resolver endpoint that enables "VPC Cloud" to resolve inbound DNS resolution requests to the Private Hosted Zone
-+ One Route 53 Outbound Resolver endpoint that enables "VPC On-prem" to forward DNS requests for S3 to "VPC Cloud"
+![Security2](/images/5-Workshop/5.4-S3-onprem/security2.png)
 
-![route 53 diagram](/images/5-Workshop/5.4-S3-onprem/route53.png)
+#### Group 1: Web Server (sg-web-app)
 
-1. Click the following link to open the [AWS CloudFormation console](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.amazonaws.com/reinvent-endpoints-builders-session/R53CF.yaml&stackName=PLOnpremSetup). The required template will be pre-loaded into the menu. Accept all default and click Create stack.
+- **Description**: Allow HTTP from the Internet
+- **Inbound Rules**:
+  - **Type**: HTTP (80) | **Source**: 0.0.0.0/0 (Or only from Load Balancer for stricter security)
 
-![Create stack](/images/5-Workshop/5.4-S3-onprem/create-stack.png)
+![Security3](/images/5-Workshop/5.4-S3-onprem/security3.png)
 
-![Button](/images/5-Workshop/5.4-S3-onprem/create-stack-button.png)
+#### Group 2: Database (sg-db-sql)
 
-It may take a few minutes for stack deployment to complete. You can continue with the next step without waiting for the deployemnt to finish.
+- **Description**: Only allow access from Web Server
+- **Inbound Rules**:
+  - **Type**: MSSQL (1433) | **Source**: Custom > Select sg-web-app ID
 
-#### Update on-premise private route table
+![Security4](/images/5-Workshop/5.4-S3-onprem/security4.png)
 
-This workshop uses a strongSwan VPN running on an EC2 instance to simulate connectivty between an on-premises datacenter and the AWS cloud. Most of the required components are provisioned before your start. To finalize the VPN configuration, you will modify the "VPC On-prem" routing table to direct traffic destined for the cloud to the strongSwan VPN instance.
+#### Group 3: Redis Cache (sg-redis-cache)
 
-1. Open the Amazon EC2 console 
+- **Description**: Only allow access from Web Server
+- **Inbound Rules**:
+  - **Type**: Custom TCP (6379) | **Source**: Custom > Select sg-web-app ID
 
-2. Select the instance named infra-vpngw-test. From the Details tab, copy the Instance ID and paste this into your text editor
-
-![ec2 id](/images/5-Workshop/5.4-S3-onprem/ec2-onprem-id.png)
-
-3. Navigate to the VPC menu by using the Search box at the top of the browser window.
-
-4. Click on Route Tables, select the RT Private On-prem route table, select the Routes tab, and click Edit Routes.
-
-![rt](/images/5-Workshop/5.4-S3-onprem/rt.png)
-
-5. Click Add route.
-+ Destination: your Cloud VPC cidr range
-+ Target: ID of your infra-vpngw-test instance (you saved in your editor at step 1)
+![Security5](/images/5-Workshop/5.4-S3-onprem/security5.png)
 
 ![add route](/images/5-Workshop/5.4-S3-onprem/add-route.png)
 
 6. Click Save changes
-
-
-

@@ -1,0 +1,53 @@
+---
+title: "Monitor with CloudWatch"
+date: "2025-11-11"
+weight: 1
+chapter: false
+pre: " <b> 5.8.1 </b> "
+---
+
+#### Monitor with CloudWatch
+
+**1. Create SNS Topic:**
+
+- Go to **SNS** > **Topics** > **Create Topic**
+- **Type**: Standard
+- **Name**: DevOps-Alerts
+
+![SNS1](/images/5-Workshop/5.8-Section8/SNS1.png)
+
+![SNS2](/images/5-Workshop/5.8-Section8/SNS2.png)
+
+**2. Create Subscription:**
+
+- **Create Subscription** > **Protocol**: Email > Enter your email (Remember to Confirm email)
+
+![SNS3](/images/5-Workshop/5.8-Section8/SNS3.png)
+
+![SNS4](/images/5-Workshop/5.8-Section8/SNS4.png)
+
+![SNS5](/images/5-Workshop/5.8-Section8/SNS5.png)
+
+**3. Create CPU Alarm:**
+
+- Go to **CloudWatch** > **Alarms** > **Create alarm**
+
+![CW1](/images/5-Workshop/5.8-Section8/CW1.png)
+
+- **Select metric** > **EC2** > **Per-Instance Metrics** > Select the InstanceID of Beanstalk > **CPUUtilization**
+
+![CW2](/images/5-Workshop/5.8-Section8/CW2.png)
+
+![CW3](/images/5-Workshop/5.8-Section8/CW3.png)
+
+![CW4](/images/5-Workshop/5.8-Section8/CW4.png)
+
+- **Condition**: CPUUtilization: **Greater than 70%**
+
+![CW5](/images/5-Workshop/5.8-Section8/CW5.png)
+
+- **Notification**: Select Topic **DevOps-Alerts**
+
+![CW6](/images/5-Workshop/5.8-Section8/CW6.png)
+
+- **Create Alarm**.

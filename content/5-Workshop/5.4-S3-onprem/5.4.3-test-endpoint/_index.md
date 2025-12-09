@@ -1,59 +1,76 @@
 ---
-title : "Test the Interface Endpoint"
+title: "Initialize ElastiCache Redis"
 date: "2025-11-11"
-weight : 3
-chapter : false
-pre : " <b> 5.4.3 </b> "
+weight: 3
+chapter: false
+pre: " <b> 5.4.3 </b> "
 ---
 
-#### Get the regional DNS name of S3 interface endpoint
-1. From the Amazon VPC menu, choose Endpoints.
+#### Initialize ElastiCache Redis
 
-2. Click the name of newly created endpoint: s3-interface-endpoint. Click details and save the regional DNS name of the endpoint (the first one) to your text-editor for later use. 
+1. Access **ElastiCache** > **Subnet groups** > **Create subnet group**
 
-![dns name](/images/5-Workshop/5.4-S3-onprem/dns.png)
+   - **Name**: redis-private-group
+   - **Subnets**: Select 2 Private Subnets
 
+![Elasti1](/images/5-Workshop/5.4-S3-onprem/Elasti1.png)
 
-#### Connect to EC2 instance in "VPC On-prem"
+![Elasti2](/images/5-Workshop/5.4-S3-onprem/Elasti2.png)
 
-1. Navigate to **Session manager** by typing "session manager" in the search box 
+2. Go to **Redis OSS caches** > **Create cache**
 
-2. Click **Start Session**, and select the EC2 instance named **Test-Interface-Endpoint**. This EC2 instance is running in "VPC On-prem" and will be used to test connectivty to Amazon S3 through the Interface endpoint we just created. Session Manager will open a new browser tab with a shell prompt: **sh-4.2 $**
+![Elasti2.9](/images/5-Workshop/5.4-S3-onprem/Elasti2.9.png)
 
-![Start session](/images/5-Workshop/5.4-S3-onprem/start-session.png)
+3. In the **Cluster settings** screen:
+   - **Engine**: Select Redis OSS
+   - **Deployment option**: Select Node-based cluster
+   - **Creation method**: Select Cluster cache (Configure and create a new cluster)
+   - **Cluster mode**: Select Disabled (Simple mode, 1 Shard)
 
-3. Change to the ssm-user's home directory with command "cd ~"
+![Elasti3](/images/5-Workshop/5.4-S3-onprem/Elasti3.png)
 
-4. Create a file named testfile2.xyz
-```
-fallocate -l 1G testfile2.xyz
-```
+4. In the **Location** screen:
 
-![user](/images/5-Workshop/5.4-S3-onprem/cli1.png)
+   - **Location**: AWS Cloud
+   - **Multi-AZ**: Uncheck (Enable)
+     - **Note**: Disable this feature to save costs for Lab environment
+   - **Auto-failover**: Uncheck (Enable)
 
+5. In the **Cache settings** screen:
+   - **Engine version**: Keep default (e.g., 7.1)
+   - **Port**: 6379
+   - **Node type**: Select t3 line > Select cache.t3.micro
+   - **Number of replicas**: Enter 0 (We only need 1 primary node, no backup nodes)
 
-5. Copy file to the same S3 bucket we created in section 3.2
+![Elasti4](/images/5-Workshop/5.4-S3-onprem/Elasti4.png)
 
-```
-aws s3 cp --endpoint-url https://bucket.<Regional-DNS-Name> testfile2.xyz s3://<your-bucket-name>
-``` 
-+ This command requires the --endpoint-url parameter, because you need to use the endpoint-specific DNS name to access S3 using an Interface endpoint.
-+ Do not include the leading ' * ' when copying/pasting the regional DNS name.
-+ Provide your S3 bucket name created earlier
+6. In the **Connectivity** screen:
+   - **Network type**: IPv4
+   - **Subnet groups**: Select Choose existing subnet group > Select the newly created redis-private-group
 
-![copy file](/images/5-Workshop/5.4-S3-onprem/cli2.png)
+![Elasti5](/images/5-Workshop/5.4-S3-onprem/Elasti5.png)
 
+7. In the **Advanced settings** screen (Important):
+   - **Encryption at rest**: Enable (Default)
+   - **Encryption in transit**: Uncheck (Disable)
+     - **Reason**: Disabling transit encryption simplifies connection from .NET code in the internal VPC environment without requiring complex SSL certificate configuration
+   - **Selected security groups**: Select Manage > select sg-redis-cache (Uncheck default)
 
-Now the file has been added to your S3 bucket. Let check your S3 bucket in the next step.
+![Elasti6](/images/5-Workshop/5.4-S3-onprem/Elasti6.png)
 
-#### Check Object in S3 bucket
+8. Scroll to the bottom and click **Create**
 
-1. Navigate to S3 console
-2. Click Buckets
-3. Click the name of your bucket and you will see testfile2.xyz has been added to your bucket
+#### Get Connection Information
 
-![check bucket](/images/5-Workshop/5.4-S3-onprem/check-bucket.png)
+1. The initialization process will take approximately **5-10 minutes**
 
+2. When the status changes to **Available** (Green):
+   - Click on the Cluster name (webapp or the name you set)
+   - In the **Overview** tab, find the **Primary endpoint** section
+   - Copy this connection string (Example: webapp.xxxx.cache.amazonaws.com)
 
+![Elasti7](/images/5-Workshop/5.4-S3-onprem/Elasti7.png)
 
-
+{{% notice tip %}}
+This endpoint will be used to configure the `ConnectionStrings__RedisConnection` environment variable for Elastic Beanstalk in the following steps.
+{{% /notice %}}

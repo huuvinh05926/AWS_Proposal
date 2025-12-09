@@ -1,43 +1,46 @@
 ---
-title : "Tạo một S3 Interface endpoint"
+title: "Khởi tạo Amazon RDS"
 date: "2025-11-11"
-weight : 2
-chapter : false
-pre : " <b> 5.4.2 </b> "
+weight: 2
+chapter: false
+pre: " <b> 5.4.2 </b> "
 ---
 
-Trong phần này, bạn sẽ tạo và kiểm tra Interface Endpoint  S3 bằng cách sử dụng môi trường truyền thống mô phỏng.
+#### Khởi tạo Amazon RDS
 
-1. Quay lại Amazon VPC menu. Trong thanh điều hướng bên trái, chọn Endpoints, sau đó click Create Endpoint.
+1. Truy cập **RDS Console** > **Subnet groups** > **Create DB subnet group**
 
-2. Trong Create endpoint console:
-+ Đặt tên interface endpoint
-+ Trong Service category, chọn **aws services** 
+2. Cấu hình Subnet Group:
+   - **Name**: db-private-group
+   - **Subnets**: Chọn 2 AZ và chọn đúng 2 Private Subnet
 
-![name](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint1.png)
+![DB1](/images/5-Workshop/5.4-S3-onprem/db1.png)
 
-3.  Trong Search box, gõ S3 và nhấn Enter. Chọn endpoint có tên com.amazonaws.us-east-1.s3. Đảm bảo rằng cột Type có giá trị Interface.
+![DB3](/images/5-Workshop/5.4-S3-onprem/db3.png)
 
-![service](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint2.png)
+3. Vào **Databases** > **Create database**
 
-4. Đối với VPC, chọn VPC Cloud từ drop-down.
-{{% notice warning %}}
-Đảm bảo rằng bạn chọn "VPC Cloud" và không phải "VPC On-prem"
-{{% /notice %}}
-+ Mở rộng **Additional settings** và đảm bảo rằng Enable DNS name *không* được chọn (sẽ sử dụng điều này trong phần tiếp theo của workshop)
+![DB4](/images/5-Workshop/5.4-S3-onprem/db4.png)
 
-![vpc](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint3.png)
+4. Cấu hình Database:
 
-5. Chọn 2 subnets trong AZs sau: us-east-1a and us-east-1b
+**Engine options**: Microsoft SQL Server (Express Edition)
 
-![subnets](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint4.png)
+![DB5](/images/5-Workshop/5.4-S3-onprem/db5.png)
 
-6. Đối với Security group, chọn SGforS3Endpoint:
+**Templates**: Free tier
 
-![sg](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint5.png)
+**Settings**: Đặt mật khẩu **Master Password** (ghi nhớ để dùng sau này)
 
-7. Giữ default policy - full access và click Create endpoint
+![DB6](/images/5-Workshop/5.4-S3-onprem/db6.png)
 
-![success](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint-success.png)
+**Connectivity**:
 
-Chúc mừng bạn đã tạo thành công S3 interface endpoint. Ở bước tiếp theo, chúng ta sẽ kiểm tra interface endpoint.
+- **VPC**: VPC mà bạn đã tạo cho Web
+- **Subnet group**: db-private-group
+- **Public access**: No
+- **VPC security group**: Chọn Security group mà bạn tạo cho database
+
+![DB7](/images/5-Workshop/5.4-S3-onprem/db7.png)
+
+5. Bấm **Create database**

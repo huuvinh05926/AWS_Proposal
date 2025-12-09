@@ -1,18 +1,28 @@
 ---
-title : "VPC Endpoint Policies"
+title: "Deploy Application"
 date: "2025-11-11"
-weight : 5
-chapter : false
-pre : " <b> 5.5. </b> "
+weight: 5
+chapter: false
+pre: " <b> 5.5 </b> "
 ---
 
-When you create an interface or gateway endpoint, you can attach an endpoint policy to it that controls access to the service to which you are connecting. A VPC endpoint policy is an IAM resource policy that you attach to an endpoint. If you do not attach a policy when you create an endpoint, AWS attaches a default policy for you that allows full access to the service through the endpoint.
+#### Overview
 
-You can create a policy that restricts access to specific S3 buckets only. This is useful if you only want certain S3 Buckets to be accessible through the endpoint.
+After having the network and data infrastructure, the next step is to deploy the .NET Core application source code to the Cloud. Instead of manually managing individual EC2 virtual servers, we will use the Platform-as-a-Service (PaaS) platform **AWS Elastic Beanstalk**.
 
-In this section you will create a VPC endpoint policy that restricts access to the S3 bucket specified in the VPC endpoint policy.
+**Objectives of this module:**
 
-![endpoint diagram](/images/5-Workshop/5.5-Policy/s3-bucket-policy.png)
+- **Containerization**: Package the MiniMarket application into a Docker Container to ensure a consistent runtime environment (Dev = Prod)
+- **Deployment**: Deploy the Container to Elastic Beanstalk. The system will automatically provision EC2, configure Load Balancer and Auto Scaling Group
+- **Connectivity**: Configure the application to securely connect to RDS and Redis through Environment Variables
+
+![App Deployment Architecture](/images/5-Workshop/5.5-Policy/beanstalk-diagram.png)
+
+#### Content
+
+- [Package application with Docker](5.5.1-section1/)
+- [Initialize Elastic Beanstalk Environment](5.5.2-section2/)
+- [Configure Database & Redis connection](5.5.3-section3/)
 
 #### Connect to an EC2 instance and verify connectivity to S3
 
@@ -21,6 +31,7 @@ In this section you will create a VPC endpoint policy that restricts access to t
 ```
 aws s3 ls s3://\<your-bucket-name\>
 ```
+
 ![test](/images/5-Workshop/5.5-Policy/test1.png)
 
 The bucket contents include the two 1 GB files uploaded in earlier.
@@ -67,6 +78,7 @@ Successfully customize policy
 ![success](/static/images/5-Workshop/5.5-Policy/success.png)
 
 5. From your session on the Test-Gateway-Endpoint instance, test access to the S3 bucket you created in Part 1: Access S3 from VPC
+
 ```
 aws s3 ls s3://<yourbucketname>
 ```
@@ -75,10 +87,10 @@ This command will return an error because access to this bucket is not permitted
 
 ![error](/static/images/5-Workshop/5.5-Policy/error.png)
 
-6. Return to your home directory on your EC2 instance ` cd~ `
+6. Return to your home directory on your EC2 instance `cd~`
 
-+ Create a file ```fallocate -l 1G test-bucket2.xyz ```
-+ Copy file to 2nd bucket ```aws s3 cp test-bucket2.xyz s3://<your-2nd-bucket-name>```
+- Create a file `fallocate -l 1G test-bucket2.xyz `
+- Copy file to 2nd bucket `aws s3 cp test-bucket2.xyz s3://<your-2nd-bucket-name>`
 
 ![success](/static/images/5-Workshop/5.5-Policy/test2.png)
 
@@ -86,7 +98,7 @@ This operation succeeds because it is permitted by the VPC endpoint policy.
 
 ![success](/static/images/5-Workshop/5.5-Policy/test2-success.png)
 
-+ Then we test access to the first bucket by copy the file to 1st bucket `aws s3 cp test-bucket2.xyz s3://<your-1st-bucket-name>`
+- Then we test access to the first bucket by copy the file to 1st bucket `aws s3 cp test-bucket2.xyz s3://<your-1st-bucket-name>`
 
 ![fail](/static/images/5-Workshop/5.5-Policy/test2-fail.png)
 
@@ -95,5 +107,3 @@ This command will return an error because access to this bucket is not permitted
 #### Part 3 Summary:
 
 In this section, you created a VPC endpoint policy for Amazon S3, and used the AWS CLI to test the policy. AWS CLI actions targeted to your original S3 bucket failed because you applied a policy that only allowed access to the second bucket you created. AWS CLI actions targeted for your second bucket succeeded because the policy allowed them. These policies can be useful in situations where you need to control access to resources through VPC endpoints.
-
-

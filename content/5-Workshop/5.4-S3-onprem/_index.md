@@ -1,20 +1,24 @@
 ---
-title : "Access S3 from on-premises"
+title: "Deploy Data Layer"
 date: "2025-11-11"
-weight : 4
-chapter : false
-pre : " <b> 5.4. </b> "
+weight: 4
+chapter: false
+pre: " <b> 5.4. </b> "
 ---
 
 #### Overview
 
-+ In this section, you will create an Interface endpoint to access Amazon S3 from a simulated on-premises environment. The Interface endpoint will allow you to route to Amazon S3 over a VPN connection from your simulated on-premises environment.
+Data is the most important asset of any system. Therefore, we will set up the Data Layer for MiniMarket with the criteria: **Maximum Security** and **High Performance**.
 
-+ Why using **Interface endpoint**: 
-    + Gateway endpoints only work with resources running in the VPC where they are created. Interface endpoints work with resources running in VPC, and also resources running in on-premises environments. Connectivty from your on-premises environment to the cloud can be provided by AWS Site-to-Site VPN or AWS Direct Connect.
-    + Interface endpoints allow you to connect to services powered by AWS PrivateLink. These services include some AWS services, services hosted by other AWS customers and partners in their own VPCs (referred to as PrivateLink Endpoint Services), and supported AWS Marketplace Partner services. For this workshop, we will focus on connecting to Amazon S3.
+We will deploy two core services:
 
-![Interface endpoint architecture](/images/5-Workshop/5.4-S3-onprem/diagram3.png)
+- **Amazon RDS (Relational Database Service)**: Using SQL Server to store business data (Products, Orders, Users). The database will be placed in a Private Subnet to prevent direct access from the Internet.
+- **Amazon ElastiCache (Redis)**: Using Redis as an in-memory cache to store login sessions and reduce query load on the main database.
 
+![Data Layer Architecture](/images/5-Workshop/5.4-S3-onprem/data-diagram.png)
 
+#### Content
 
+- [Setup Security Groups for DB & Cache](5.4.1-prepare/)
+- [Initialize Amazon RDS (SQL Server)](5.4.2-create-interface-enpoint/)
+- [Initialize Amazon ElastiCache (Redis)](5.4.3-test-endpoint/)

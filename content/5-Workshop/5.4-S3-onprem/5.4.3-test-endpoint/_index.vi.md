@@ -1,55 +1,76 @@
 ---
-title : "Kiểm tra Interface Endpoint"
+title: "Khởi tạo ElastiCache Redis"
 date: "2025-11-11"
-weight : 3
-chapter : false
-pre : " <b> 5.4.3 </b> "
+weight: 3
+chapter: false
+pre: " <b> 5.4.3 </b> "
 ---
 
-#### Lấy regional DNS name (tên DNS khu vực) của S3 interface endpoint
-1. Trong Amazon VPC menu, chọn Endpoints.
+#### Khởi tạo ElastiCache Redis
 
-2. Click tên của endpoint chúng ta mới tạo ở mục 4.2: s3-interface-endpoint. Click details và lưu lại regional DNS name của endpoint (cái đầu tiên) vào text-editor của bạn để dùng ở các bước sau.
+1. Truy cập **ElastiCache** > **Subnet groups** > **Create subnet group**
 
-![dns name](/images/5-Workshop/5.4-S3-onprem/dns.png)
+   - **Name**: redis-private-group
+   - **Subnets**: Chọn 2 Private Subnet
 
-#### Kết nối đến EC2 instance ở trong "VPC On-prem" (giả lập môi trường truyền thống)
+![Elasti1](/images/5-Workshop/5.4-S3-onprem/Elasti1.png)
 
-1. Đi đến **Session manager** bằng cách gõ "session manager" vào ô tìm kiếm
+![Elasti2](/images/5-Workshop/5.4-S3-onprem/Elasti2.png)
 
-2. Click **Start Session**, chọn EC2 instance có tên **Test-Interface-Endpoint**. EC2 instance này đang chạy trên "VPC On-prem" và sẽ được sử dụng để kiểm tra kết nối đến Amazon S3 thông qua Interface endpoint. Session Manager sẽ mở 1 browser tab mới với shell prompt: **sh-4.2 $**
+2. Vào **Redis OSS caches** > **Create cache**
 
-![Start session](/images/5-Workshop/5.4-S3-onprem/start-session.png)
+![Elasti2.9](/images/5-Workshop/5.4-S3-onprem/Elasti2.9.png)
 
-3. Đi đến ssm-user's home directory với lệnh "cd ~"
+3. Tại màn hình **Cluster settings**:
+   - **Engine**: Chọn Redis OSS
+   - **Deployment option**: Chọn Node-based cluster
+   - **Creation method**: Chọn Cluster cache (Configure and create a new cluster)
+   - **Cluster mode**: Chọn Disabled (Chế độ đơn giản, 1 Shard)
 
-4. Tạo 1 file tên testfile2.xyz
-```
-fallocate -l 1G testfile2.xyz
-```
+![Elasti3](/images/5-Workshop/5.4-S3-onprem/Elasti3.png)
 
-![user](/images/5-Workshop/5.4-S3-onprem/cli1.png)
+4. Tại màn hình **Location**:
 
-5. Copy file vào S3 bucket mình tạo ở section 4.2
-```
-aws s3 cp --endpoint-url https://bucket.<Regional-DNS-Name> testfile2.xyz s3://<your-bucket-name>
-``` 
-+ Câu lệnh này yêu cầu thông số --endpoint-url, bởi vì bạn cần sử dụng DNS name chỉ định cho endpoint để truy cập vào S3 thông qua Interface endpoint.
-+ Không lấy ' * ' khi copy/paste tên DNS khu vực.
-+ Cung cấp tên S3 bucket của bạn
+   - **Location**: AWS Cloud
+   - **Multi-AZ**: Bỏ tích (Enable)
+     - **Lưu ý**: Tắt tính năng này để tiết kiệm chi phí cho môi trường Lab
+   - **Auto-failover**: Bỏ tích (Enable)
 
-![copy file](/images/5-Workshop/5.4-S3-onprem/cli2.png)
+5. Tại màn hình **Cache settings**:
+   - **Engine version**: Để mặc định (VD: 7.1)
+   - **Port**: 6379
+   - **Node type**: Chọn dòng t3 > Chọn cache.t3.micro
+   - **Number of replicas**: Nhập 0 (Chúng ta chỉ cần 1 node chính, không cần node dự phòng)
 
-Bây giờ tệp đã được thêm vào bộ chứa S3 của bạn. Hãy kiểm tra bộ chứa S3 của bạn trong bước tiếp theo.
+![Elasti4](/images/5-Workshop/5.4-S3-onprem/Elasti4.png)
 
-#### Kiểm tra Object trong S3 bucket
+6. Tại màn hình **Connectivity**:
+   - **Network type**: IPv4
+   - **Subnet groups**: Chọn Choose existing subnet group > Chọn redis-private-group vừa tạo
 
-1. Đi đến S3 console
-2. Click Buckets
-3. Click tên bucket của bạn và bạn sẽ thấy testfile2.xyz đã được thêm vào s3 bucket của bạn
+![Elasti5](/images/5-Workshop/5.4-S3-onprem/Elasti5.png)
 
-![check bucket](/images/5-Workshop/5.4-S3-onprem/check-bucket.png)
+7. Tại màn hình **Advanced settings** (Quan trọng):
+   - **Encryption at rest**: Enable (Mặc định)
+   - **Encryption in transit**: Bỏ tích (Disable)
+     - **Lý do**: Tắt mã hóa đường truyền giúp đơn giản hóa việc kết nối từ code .NET trong môi trường nội bộ VPC mà không cần cấu hình chứng chỉ SSL phức tạp
+   - **Selected security groups**: Chọn Manage > chọn sg-redis-cache (Bỏ chọn default)
 
+![Elasti6](/images/5-Workshop/5.4-S3-onprem/Elasti6.png)
 
+8. Kéo xuống cuối cùng và bấm **Create**
 
+#### Lấy thông tin kết nối
 
+1. Quá trình khởi tạo sẽ mất khoảng **5-10 phút**
+
+2. Khi trạng thái chuyển sang **Available** (Màu xanh):
+   - Bấm vào tên Cluster (webapp hoặc tên bạn đặt)
+   - Tại tab **Overview**, tìm mục **Primary endpoint**
+   - Copy chuỗi kết nối này (Ví dụ: webapp.xxxx.cache.amazonaws.com)
+
+![Elasti7](/images/5-Workshop/5.4-S3-onprem/Elasti7.png)
+
+{{% notice tip %}}
+Endpoint này sẽ được dùng để cấu hình biến môi trường `ConnectionStrings__RedisConnection` cho Elastic Beanstalk ở các bước sau.
+{{% /notice %}}
