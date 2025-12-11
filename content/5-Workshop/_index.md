@@ -6,9 +6,9 @@ chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
+<!-- {{% notice warning %}}
 ⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+{{% /notice %}} -->
 
 # Deploy Human Resource Management System on AWS Cloud
 
